@@ -25,6 +25,8 @@ import {UserService} from './user.service';
 import {AdminAuthGaurdService} from './admin-auth-gaurd.service';
 import { ProductFormComponent } from './components/admin/product-form/product-form.component';
 import {CategoriesService} from './categories.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CustomFormsModule} from 'ng2-validation';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,7 @@ import {CategoriesService} from './categories.service';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,9 @@ import {CategoriesService} from './categories.service';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CustomFormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
@@ -57,8 +62,9 @@ import {CategoriesService} from './categories.service';
       { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuardService] },
       { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuardService] },
 
-      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGaurdService] },
       { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGaurdService] },
+      { path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AuthGuardService, AdminAuthGaurdService] },
+      { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuardService, AdminAuthGaurdService] },
       { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuardService, AdminAuthGaurdService] },
     ])
   ],

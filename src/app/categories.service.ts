@@ -11,6 +11,6 @@ export class CategoriesService {
   ) { }
 
   getCategories() {
-    return this.db.list('/categories', ref => ref.orderByChild('name')).valueChanges();
+    return this.db.list('/categories', ref => ref.orderByChild('name')).snapshotChanges();
   }
 }
